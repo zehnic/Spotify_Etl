@@ -1,0 +1,38 @@
+# Welcome to your prefect.yaml file! You can use this file for storing and managing
+# configuration for deploying your flows. We recommend committing this file to source
+# control along with your flow code.
+
+# Generic metadata about this project
+name: project 2
+prefect-version: 3.6.2
+
+# build section allows you to manage and build docker images
+build: null
+
+# push section allows you to manage if and how this project is uploaded to remote locations
+push: null
+
+# pull section allows you to provide instructions for cloning this project in remote locations
+pull:
+  - prefect.deployments.steps.set_working_directory:
+      directory: D:\study\data projects\project 2
+
+# the deployments section allows you to provide configuration for deploying flows
+deployments:
+  - name: spotify_etl
+    version: null
+    tags: []
+    concurrency_limit: null
+    description: null
+    entrypoint: .\spotify_etl.py:spotify_etl_run
+    parameters:
+      user_id: "n6pxrc8vot90kipy4b9b5yd2r"
+    work_pool:
+      name: spotify_pool
+      work_queue_name: null
+      job_variables: {}
+    schedules:
+      - interval: 300.0
+        anchor_date: "2025-11-24T19:34:46.925399+00:00"
+        timezone: UTC
+        active: true
